@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhogcwjb42huh"]
+[gd_scene load_steps=7 format=3 uid="uid://bhogcwjb42huh"]
 
 [ext_resource type="PackedScene" uid="uid://b68hipkyeaf1x" path="res://characters/male_shooter.tscn" id="1_4o30a"]
+[ext_resource type="Texture2D" uid="uid://bvkbmqlunsin7" path="res://assets/textures/test_ground_texture_gray.png" id="2_hh5l8"]
+[ext_resource type="Script" uid="uid://bc2e2f8l486wg" path="res://scripts/bird_view_camera.gd" id="3_b3inp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b3inp"]
+albedo_texture = ExtResource("2_hh5l8")
+uv1_scale = Vector3(100, 100, 100)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4o30a"]
+material = SubResource("StandardMaterial3D_b3inp")
 size = Vector2(100, 100)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hh5l8"]
@@ -19,5 +26,10 @@ mesh = SubResource("PlaneMesh_4o30a")
 [node name="PhysicsCollision" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("WorldBoundaryShape3D_hh5l8")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.753116, 0.657888, 0, -0.657888, 0.753116, 0, 8.568, 8.8258)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.97772, 0)
+
+[node name="BirdViewCamera" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.109925, 0.99394, 0, -0.99394, 0.109925, 0, 8.99206, 0.836506)
+script = ExtResource("3_b3inp")
+target = NodePath("../MaleShooter")
