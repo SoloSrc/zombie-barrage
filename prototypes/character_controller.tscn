@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhogcwjb42huh"]
+
+[ext_resource type="PackedScene" uid="uid://b68hipkyeaf1x" path="res://characters/male_shooter.tscn" id="1_4o30a"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4o30a"]
+size = Vector2(100, 100)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hh5l8"]
+
+[node name="CharacterController" type="Node3D"]
+
+[node name="MaleShooter" parent="." instance=ExtResource("1_4o30a")]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="Graphics" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("PlaneMesh_4o30a")
+
+[node name="PhysicsCollision" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("WorldBoundaryShape3D_hh5l8")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.753116, 0.657888, 0, -0.657888, 0.753116, 0, 8.568, 8.8258)
