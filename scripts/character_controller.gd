@@ -12,18 +12,13 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction: Vector3 = Vector3.ZERO
-	if Input.is_action_pressed("move_forward"):
-		direction.z -= 1
-	if Input.is_action_pressed("move_backward"):
-		direction.z += 1
-	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
-	if Input.is_action_pressed("move_right"):
-		direction.x += 1
+	var dir_input: Vector2 = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_forward", "move_backward")) 
+	direction.x = dir_input.x
+	direction.z = dir_input.y
+	direction = direction.normalized()
 	
 	if direction != Vector3.ZERO:
 		animation_tree.set("parameters/Movement/blend_amount", 1.0)
-		direction = direction.normalized()
 		look_at(global_position + direction)
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
