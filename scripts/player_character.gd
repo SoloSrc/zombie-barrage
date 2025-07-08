@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name PlayerCharacter
 
 const IDLE_STATE = "idle"
 const PISTOL_RUN_STATE = "pistol_run"
