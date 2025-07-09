@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name SkeletonEnemy
 
-const START_SPEED = 3.0
+const START_SPEED = 2.5
 
 var target: CharacterBody3D
 var movement_delta: float

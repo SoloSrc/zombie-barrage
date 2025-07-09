@@ -1,15 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhogcwjb42huh"]
+[gd_scene load_steps=9 format=3 uid="uid://bhogcwjb42huh"]
 
 [ext_resource type="PackedScene" uid="uid://c85unba8rfv7y" path="res://characters/rogue.tscn" id="1_hh5l8"]
 [ext_resource type="Script" uid="uid://bc2e2f8l486wg" path="res://scripts/bird_view_camera.gd" id="3_b3inp"]
-[ext_resource type="Script" uid="uid://7lwlrgkng85l" path="res://scripts/spawn_path.gd" id="3_kbugc"]
-
-[sub_resource type="Curve3D" id="Curve3D_hh5l8"]
-_data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 47, 0, 47, 0, 0, 0, 0, 0, 0, 47, 0, -47, 0, 0, 0, 0, 0, 0, -47, 0, -47, 0, 0, 0, 0, 0, 0, -47, 0, 47, 0, 0, 0, 0, 0, 0, 47, 0, 47),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
-}
-point_count = 5
+[ext_resource type="Script" uid="uid://g7b52jabuisi" path="res://scripts/region_spawner.gd" id="4_kbugc"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_b3inp"]
 vertices = PackedVector3Array(-49.25, 0.5, -49.25, -49.25, 0.5, 49.25, 49.25, 0.5, 49.25, 49.25, 0.5, -49.25)
@@ -42,17 +35,6 @@ transform = Transform3D(1, 0, 0, 0, 0.375626, 0.926771, 0, -0.926771, 0.375626, 
 script = ExtResource("3_b3inp")
 target = NodePath("../Rogue")
 
-[node name="SpawnPath" type="Path3D" parent="." node_paths=PackedStringArray("player")]
-curve = SubResource("Curve3D_hh5l8")
-script = ExtResource("3_kbugc")
-player = NodePath("../Rogue")
-
-[node name="SpawnPathFollow3D" type="PathFollow3D" parent="SpawnPath"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47, 0, 47)
-
-[node name="SpawnTimer" type="Timer" parent="SpawnPath"]
-autostart = true
-
 [node name="Map" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_b3inp")
 
@@ -64,4 +46,11 @@ mesh = SubResource("PlaneMesh_4o30a")
 [node name="PhysicsCollision" type="CollisionShape3D" parent="Map/Ground"]
 shape = SubResource("WorldBoundaryShape3D_hh5l8")
 
-[connection signal="timeout" from="SpawnPath/SpawnTimer" to="SpawnPath" method="_on_spawn_timer_timeout"]
+[node name="RegionSpawner" type="Timer" parent="." node_paths=PackedStringArray("player", "regions")]
+wait_time = 2.0
+autostart = true
+script = ExtResource("4_kbugc")
+player = NodePath("../Rogue")
+regions = [NodePath("../Map")]
+
+[connection signal="timeout" from="RegionSpawner" to="RegionSpawner" method="_on_timeout"]
