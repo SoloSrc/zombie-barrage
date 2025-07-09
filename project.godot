@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Zombie Barrage"
+run/main_scene="uid://bhogcwjb42huh"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -51,4 +52,6 @@ move_right={
 
 [layer_names]
 
+3d_physics/layer_1="Physical World"
 3d_navigation/layer_1="PhysicalWorld"
+3d_physics/layer_2="Hurt/Hit Boxes"

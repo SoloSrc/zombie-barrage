@@ -6,7 +6,9 @@ const PISTOL_RUN_STATE = "pistol_run"
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+const HEALTH = 500.0
 
+@onready var health: float = HEALTH
 @onready var animation_tree: AnimationTree = $AnimationTree
 
 func _physics_process(delta: float) -> void:
@@ -39,3 +41,7 @@ func set_anim_state(state: String) -> void:
 
 func get_anim_state() -> String:
 	return animation_tree.get("parameters/state/current_state")
+
+func take_hit(damage: float):
+	health -= damage
+	print(name, " took ", damage, " damage")

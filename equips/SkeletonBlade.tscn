@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6ch5mbjygc5x"]
+
+[ext_resource type="Script" uid="uid://dbaja2xgrw2rx" path="res://scripts/melee_weapon.gd" id="1_j03sy"]
+[ext_resource type="PackedScene" uid="uid://3p18hr24ov77" path="res://assets/KayKit_Skeletons_1.0_FREE/assets/gltf/Skeleton_Blade.gltf" id="1_myq6c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_myq6c"]
+size = Vector3(0.588, 1, 0.231)
+
+[node name="SkeletonBlade" type="Node3D"]
+script = ExtResource("1_j03sy")
+
+[node name="Skeleton_Blade2" parent="." instance=ExtResource("1_myq6c")]
+transform = Transform3D(4.37114e-08, -1, -8.74228e-08, -1, -4.37114e-08, 0, -3.82137e-15, 8.74228e-08, -1, 0, 0.0948051, 0)
+
+[node name="Hurtbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0948051, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -0.697418, 0.004612, 0.00179219)
+shape = SubResource("BoxShape3D_myq6c")
+debug_color = Color(0.955181, 0.213337, 1.92523e-07, 0.42)
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]

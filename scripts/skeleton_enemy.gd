@@ -2,13 +2,19 @@ extends CharacterBody3D
 class_name SkeletonEnemy
 
 const START_DAMAGE = 50.0
+const START_HEALTH = 100.0
 
 var damage: float = START_DAMAGE
+var health: float = START_HEALTH
+
+var weapon_range: float = 2.0
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 var velocity_computed: Vector3
 
 func _physics_process(delta: float) -> void:
+	if health <= 0.0:
+		return
 	velocity_computed.y = 0
 	velocity = velocity_computed
 	if velocity_computed != Vector3.ZERO:
@@ -24,4 +30,10 @@ func _on_velocity_computed(safe_velocity: Vector3) -> void:
 	else:
 		animation_tree.set("parameters/Movement/blend_amount", 0.0)
 	velocity_computed = safe_velocity
-	
+
+func _on_target_within_range(_target: PlayerCharacter):
+	if not is_attacking():
+		animation_tree.set("parameters/Attack/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+func is_attacking() -> bool:
+	return animation_tree.get("parameters/Attack/active")
