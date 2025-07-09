@@ -37,3 +37,9 @@ func _on_target_within_range(_target: PlayerCharacter):
 
 func is_attacking() -> bool:
 	return animation_tree.get("parameters/Attack/active")
+
+func is_attack_active() -> bool:
+	if not is_attacking():
+		return false
+	var pos: float = animation_tree.get("parameters/SliceDiagonal/current_position")
+	return pos >= 0.33 and pos < 0.51
