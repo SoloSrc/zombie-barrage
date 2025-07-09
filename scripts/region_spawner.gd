@@ -23,5 +23,4 @@ func _on_timeout() -> void:
 	while (player.global_position - origin).length() < 20:
 		origin = NavigationServer3D.region_get_random_point(region_rids[next_region_idx], 0, true)
 	node.transform.origin = origin
-	node.target = player
 	owner.add_child(node)
