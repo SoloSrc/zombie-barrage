@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dbsa43ub0dxam" path="res://scripts/dagger_weapon.gd" id="1_u4o34"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_suwr3"]
-radius = 15.0
+radius = 10.0
 
 [node name="DaggerWeapon" type="Node3D"]
 script = ExtResource("1_u4o34")

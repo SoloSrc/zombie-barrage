@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 players=""
 enemies=""
+xp_drops=""
 
 [input]
 
@@ -57,3 +58,4 @@ move_right={
 3d_navigation/layer_1="PhysicalWorld"
 3d_physics/layer_2="Hurt Boxes"
 3d_physics/layer_3="Hit Boxes"
+3d_physics/layer_4="Magnet"
