@@ -14,7 +14,7 @@ script = ExtResource("1_5fhwd")
 [node name="Internal" type="Node3D" parent="."]
 
 [node name="dagger2" parent="Internal" instance=ExtResource("1_drv20")]
-transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0.271296)
+transform = Transform3D(3.3437e-15, 7.64949e-08, -1.75, 1.75, -7.64949e-08, 0, -7.64949e-08, -1.75, -7.64949e-08, 0, 0, 0.271296)
 
 [node name="Hurtbox" type="Area3D" parent="Internal"]
 transform = Transform3D(-0.164772, -0.986331, 0, 0.986331, -0.164772, 0, 0, 0, 1, 0, 0, 0.483568)

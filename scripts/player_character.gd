@@ -18,6 +18,9 @@ func _physics_process(delta: float) -> void:
 	elif animation_tree.get("parameters/Transition/current_state") != "Dead":
 		player_death.emit(self)
 		animation_tree.set("parameters/Transition/transition_request", "Dead")
+	else:
+		velocity.x = 0.0
+		velocity.z = 0.0
 	
 	# Add the gravity.
 	if not is_on_floor():

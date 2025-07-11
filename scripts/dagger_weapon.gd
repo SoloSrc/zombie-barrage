@@ -6,10 +6,13 @@ const DAGGER_PROJECTILE = preload("res://weapons/dagger_projectile.tscn")
 @export var cooldown_in_secs: float = 2.0
 
 @onready var in_range: Dictionary[NodePath,SkeletonEnemy] = {}
+@onready var player_owner: PlayerCharacter = get_parent() as PlayerCharacter
 
 var cooldown_countdown: float = 0.0
 
 func _process(delta: float) -> void:
+	if not player_owner.health_component.is_alive():
+		return
 	if cooldown_countdown > 0.0:
 		cooldown_countdown -= delta
 		return
