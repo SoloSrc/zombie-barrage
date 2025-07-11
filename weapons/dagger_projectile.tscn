@@ -1,24 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://cx87734rvpe2m"]
+[gd_scene load_steps=5 format=3 uid="uid://cx87734rvpe2m"]
 
 [ext_resource type="Script" uid="uid://ckb4hwbdx656" path="res://scripts/targeted_projectile.gd" id="1_5fhwd"]
 [ext_resource type="PackedScene" uid="uid://bj1l8g2mc7pkn" path="res://assets/KayKit_Adventurers_1.0_FREE/Assets/gltf/dagger.gltf" id="1_drv20"]
+[ext_resource type="Script" uid="uid://co7omdfjydqrh" path="res://scripts/components/spin_component.gd" id="3_tfp7d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5fhwd"]
 size = Vector3(0.271545, 0.120117, 1.18506)
 
 [node name="DaggerProjectile" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 0.999881, 0, 0, 0, 0.999881, 0, 0, 0)
 script = ExtResource("1_5fhwd")
 
-[node name="dagger2" parent="." instance=ExtResource("1_drv20")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.212272)
+[node name="Internal" type="Node3D" parent="."]
 
-[node name="Hurtbox" type="Area3D" parent="."]
+[node name="dagger2" parent="Internal" instance=ExtResource("1_drv20")]
+transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0.271296)
+
+[node name="Hurtbox" type="Area3D" parent="Internal"]
+transform = Transform3D(-0.164772, -0.986331, 0, 0.986331, -0.164772, 0, 0, 0, 1, 0, 0, 0.483568)
 collision_layer = 2
 collision_mask = 5
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Internal/Hurtbox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0134063, 0.00794968, -0.597505)
 shape = SubResource("BoxShape3D_5fhwd")
 debug_color = Color(0.955181, 0.213337, 1.92523e-07, 0.42)
 
-[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
+[node name="SpinComponent" type="Node" parent="Internal"]
+script = ExtResource("3_tfp7d")
+metadata/_custom_type_script = "uid://co7omdfjydqrh"
+
+[connection signal="area_entered" from="Internal/Hurtbox" to="." method="_on_hurtbox_area_entered"]

@@ -9,7 +9,6 @@ var weapon_range: float = 2.0
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var health_component: HealthComponent = $HealthComponent
-@onready var animation_player: AnimationPlayer = $Skeleton_Minion/AnimationPlayer
 
 var velocity_computed: Vector3
 
@@ -20,7 +19,6 @@ func _process(_delta: float) -> void:
 	if not health_component.is_alive() and not is_curr_anim_state_dead():
 		animation_tree.set("parameters/Transition/transition_request", "Dead")
 	elif is_curr_anim_state_dead() and is_death_anim_finished():
-		print(animation_tree["parameters/DeathAnimation/current_length"])
 		queue_free()
 
 func _physics_process(delta: float) -> void:
@@ -53,7 +51,7 @@ func is_attack_active() -> bool:
 	if not is_attacking():
 		return false
 	var pos: float = animation_tree.get("parameters/SliceDiagonalAnimation/current_position")
-	return pos >= 0.33 and pos < 0.51
+	return pos >= 0.33 and pos < 0.55
 
 func is_curr_anim_state_dead():
 	return animation_tree.get("parameters/Transition/current_state") == "Dead"
