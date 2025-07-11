@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhogcwjb42huh"]
+[gd_scene load_steps=10 format=3 uid="uid://bhogcwjb42huh"]
 
 [ext_resource type="PackedScene" uid="uid://c85unba8rfv7y" path="res://characters/rogue.tscn" id="1_hh5l8"]
+[ext_resource type="PackedScene" uid="uid://b6wi1d130heik" path="res://weapons/dagger_weapon.tscn" id="2_kbugc"]
 [ext_resource type="Script" uid="uid://bc2e2f8l486wg" path="res://scripts/bird_view_camera.gd" id="3_b3inp"]
 [ext_resource type="Script" uid="uid://g7b52jabuisi" path="res://scripts/region_spawner.gd" id="4_kbugc"]
 
@@ -27,11 +28,13 @@ size = Vector2(100, 100)
 
 [node name="Rogue" parent="." instance=ExtResource("1_hh5l8")]
 
+[node name="DaggerWeapon" parent="Rogue" instance=ExtResource("2_kbugc")]
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.97772, 0)
 
 [node name="BirdViewCamera" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
-transform = Transform3D(1, 0, 0, 0, 0.426159, 0.904649, 0, -0.904649, 0.426159, 0, 14.7293, 7.08166)
+transform = Transform3D(1, 0, 0, 0, 0.277952, 0.960595, 0, -0.960595, 0.277952, 0, 14.7293, 4.42003)
 script = ExtResource("3_b3inp")
 target = NodePath("../Rogue")
 

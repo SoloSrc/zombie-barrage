@@ -8,15 +8,15 @@ const PISTOL_RUN_STATE = "pistol_run"
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-const HEALTH = 500.0
 
-@onready var health: float = HEALTH
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var health_component: HealthComponent = $HealthComponent
 
 func _physics_process(delta: float) -> void:
-	if health >= 0.0:
+	if health_component.is_alive():
 		calc_movement()
 	elif animation_tree.get("parameters/Transition/current_state") != "Dead":
+		player_death.emit(self)
 		animation_tree.set("parameters/Transition/transition_request", "Dead")
 	
 	# Add the gravity.
@@ -49,7 +49,3 @@ func set_mov_blend_amount(amt: float) -> void:
 
 func get_anim_state() -> String:
 	return animation_tree.get("parameters/state/current_state")
-
-func take_hit(damage: float):
-	health -= damage
-	print(name, " took ", damage, " damage")

@@ -2,18 +2,29 @@ extends CharacterBody3D
 class_name SkeletonEnemy
 
 const START_DAMAGE = 50.0
-const START_HEALTH = 100.0
 
 var damage: float = START_DAMAGE
-var health: float = START_HEALTH
 
 var weapon_range: float = 2.0
 
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var health_component: HealthComponent = $HealthComponent
+@onready var animation_player: AnimationPlayer = $Skeleton_Minion/AnimationPlayer
+
 var velocity_computed: Vector3
 
+func _ready() -> void:
+	animation_tree.set("parameters/Transition/transition_request", "Alive")
+
+func _process(_delta: float) -> void:
+	if not health_component.is_alive() and not is_curr_anim_state_dead():
+		animation_tree.set("parameters/Transition/transition_request", "Dead")
+	elif is_curr_anim_state_dead() and is_death_anim_finished():
+		print(animation_tree["parameters/DeathAnimation/current_length"])
+		queue_free()
+
 func _physics_process(delta: float) -> void:
-	if health <= 0.0:
+	if not health_component.is_alive():
 		return
 	velocity_computed.y = 0
 	velocity = velocity_computed
@@ -41,5 +52,12 @@ func is_attacking() -> bool:
 func is_attack_active() -> bool:
 	if not is_attacking():
 		return false
-	var pos: float = animation_tree.get("parameters/SliceDiagonal/current_position")
+	var pos: float = animation_tree.get("parameters/SliceDiagonalAnimation/current_position")
 	return pos >= 0.33 and pos < 0.51
+
+func is_curr_anim_state_dead():
+	return animation_tree.get("parameters/Transition/current_state") == "Dead"
+
+func is_death_anim_finished() -> bool:
+	var curr_position: float = animation_tree["parameters/DeathAnimation/current_position"]
+	return curr_position >= animation_tree["parameters/DeathAnimation/current_length"]

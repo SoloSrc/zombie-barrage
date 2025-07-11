@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6wi1d130heik"]
+
+[ext_resource type="Script" uid="uid://dbsa43ub0dxam" path="res://scripts/dagger_weapon.gd" id="1_u4o34"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_suwr3"]
+radius = 15.0
+
+[node name="DaggerWeapon" type="Node3D"]
+script = ExtResource("1_u4o34")
+
+[node name="Range" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Range"]
+shape = SubResource("SphereShape3D_suwr3")
+debug_color = Color(0.605356, 0.541156, 1.92523e-07, 0.42)
+
+[connection signal="area_entered" from="Range" to="." method="_on_range_area_entered"]
+[connection signal="area_exited" from="Range" to="." method="_on_range_area_exited"]
