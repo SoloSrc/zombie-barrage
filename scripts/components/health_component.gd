@@ -1,6 +1,7 @@
 extends Node
 class_name HealthComponent
 
+signal character_damage(amount: float)
 signal character_death(character: Node3D)
 
 @export var start_health: float = 100.0
@@ -12,6 +13,6 @@ func is_alive() -> bool:
 
 func take_hit(damage: float):
 	curr_health -= damage
-	print(owner.name, " took ", damage, " damage")
+	character_damage.emit(damage)
 	if curr_health <= 0.0:
 		character_death.emit(owner)
