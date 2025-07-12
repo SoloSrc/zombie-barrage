@@ -5,7 +5,7 @@ const START_DAMAGE = 50.0
 
 var damage: float = START_DAMAGE
 
-var weapon_range: float = 2.0
+var weapon_range: float = 1.5
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var health_component: HealthComponent = $HealthComponent
