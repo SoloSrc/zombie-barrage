@@ -15,6 +15,8 @@ func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
 func _on_area_entered(area: Area3D):
+	if not player_owner.health_component.is_alive():
+		return
 	if not area.owner is MagnetCollectable:
 		return
 	var collectable: MagnetCollectable = area.owner as MagnetCollectable
