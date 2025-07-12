@@ -9,6 +9,7 @@ var weapon_range: float = 2.0
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var physical_box: CollisionShape3D = $PhysicalBox
 
 var velocity_computed: Vector3
 
@@ -17,6 +18,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if not health_component.is_alive() and not is_curr_anim_state_dead():
+		physical_box.disabled = true
 		animation_tree.set("parameters/Transition/transition_request", "Dead")
 	elif is_curr_anim_state_dead() and is_death_anim_finished():
 		queue_free()

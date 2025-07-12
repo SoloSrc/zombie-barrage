@@ -20,7 +20,7 @@ func _on_timeout() -> void:
 	var next_region_idx: int = (last_region_idx + 1) % region_rids.size()
 	var node: SkeletonEnemy = SKELETON_MINION.instantiate()
 	var origin: Vector3 = player.global_position
-	while (player.global_position - origin).length() < 20:
+	while get_viewport().get_camera_3d().is_position_in_frustum(origin):
 		origin = NavigationServer3D.region_get_random_point(region_rids[next_region_idx], 0, true)
 	node.transform.origin = origin
 	owner.add_child(node)
