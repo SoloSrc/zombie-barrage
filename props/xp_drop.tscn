@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6qr732ubxx1"]
+[gd_scene load_steps=9 format=3 uid="uid://b6qr732ubxx1"]
 
 [ext_resource type="Script" uid="uid://7plpxgqis03r" path="res://scripts/xp_drop.gd" id="1_3kpsl"]
+[ext_resource type="Script" uid="uid://c7f52c7w1ju2f" path="res://scripts/components/attract_component.gd" id="2_hbcml"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b5bkv"]
 albedo_color = Color(0.180392, 0.847059, 1, 1)
@@ -61,7 +62,7 @@ mesh = SubResource("SphereMesh_3kpsl")
 
 [node name="Area3D" type="Area3D" parent="."]
 collision_layer = 8
-collision_mask = 0
+collision_mask = 4
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
@@ -73,3 +74,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_uqhtm")
 }
 autoplay = "Rise"
+
+[node name="AttractComponent" type="Node" parent="."]
+script = ExtResource("2_hbcml")
+metadata/_custom_type_script = "uid://c7f52c7w1ju2f"
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_entered"]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bb12gofg4rltt"]
+
+[ext_resource type="Script" uid="uid://w63x2veb1155" path="res://scripts/magnet_path.gd" id="1_vs4qe"]
+
+[sub_resource type="Curve3D" id="Curve3D_3kpsl"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0.5, 1, 0, 1.1, 0, 0, 0, 0, 0, 0, -0.4, 0, 1.7, 0, 0, 0, 0, 0, 0, 0, 0, 1.1, -1),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[node name="MagnetPath" type="Path3D"]
+curve = SubResource("Curve3D_3kpsl")
+script = ExtResource("1_vs4qe")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="."]
+transform = Transform3D(-0.999999, -3.90967e-08, -7.81933e-08, 0, 0.894427, -0.447213, 8.74227e-08, -0.447214, -0.894427, 0, 1.1, 0)
+loop = false

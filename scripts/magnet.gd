@@ -1,5 +1,5 @@
 extends Area3D
-class_name MagnetComponent
+class_name Magnet
 
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var player_owner: PlayerCharacter = owner as PlayerCharacter
@@ -15,8 +15,9 @@ func _ready() -> void:
 	area_entered.connect(_on_area_entered)
 
 func _on_area_entered(area: Area3D):
-	if not area.owner is XPDrop:
-		pass
-	var xp_drop: XPDrop = area.owner as XPDrop
-	player_owner.xp_track_component.take_xp(xp_drop.xp_amount)
-	xp_drop.queue_free()
+	if not area.owner is MagnetCollectable:
+		return
+	var collectable: MagnetCollectable = area.owner as MagnetCollectable
+	if collectable.was_collected:
+		return
+	collectable.attract_component.go_to(player_owner)
