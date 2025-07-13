@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://hnxglfkjgahd"]
+
+[ext_resource type="Script" uid="uid://dq4ud1oxly32k" path="res://scripts/xp_bar.gd" id="1_jfgxc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ut3t8"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jfgxc"]
+bg_color = Color(0.106517, 0.403905, 0.854601, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6net"]
+bg_color = Color(0.114897, 0.114897, 0.114897, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_ywxey"]
+
+[node name="XpBar" type="ProgressBar"]
+offset_right = 210.0
+offset_bottom = 27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ut3t8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jfgxc")
+value = 60.0
+script = ExtResource("1_jfgxc")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 214.0
+offset_right = 261.0
+offset_bottom = 27.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6net")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lv "
+label_settings = SubResource("LabelSettings_ywxey")
+horizontal_alignment = 1
+vertical_alignment = 1

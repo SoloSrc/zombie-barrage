@@ -33,7 +33,7 @@ corner_radius_bottom_left = 6
 
 [node name="HealthBar" type="ProgressBar"]
 z_index = 1
-offset_right = 261.0
+offset_right = 260.0
 offset_bottom = 27.0
 theme_override_styles/background = SubResource("StyleBoxEmpty_pv4sj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rbyyf")

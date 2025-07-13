@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d27w45nhdcqus"]
+[gd_scene load_steps=3 format=3 uid="uid://d27w45nhdcqus"]
 
 [ext_resource type="PackedScene" uid="uid://bn2m6enepxd1g" path="res://ui/health_bar.tscn" id="1_rbyyf"]
+[ext_resource type="PackedScene" uid="uid://hnxglfkjgahd" path="res://ui/xp_bar.tscn" id="2_276te"]
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -11,8 +12,15 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HealthBar" parent="." instance=ExtResource("1_rbyyf")]
-layout_mode = 1
+layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
-offset_right = 330.0
+offset_right = 275.0
 offset_bottom = 42.0
+
+[node name="XpBar" parent="." instance=ExtResource("2_276te")]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 45.0
+offset_right = 225.0
+offset_bottom = 72.0
