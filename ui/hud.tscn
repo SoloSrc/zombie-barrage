@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://d27w45nhdcqus"]
+[gd_scene load_steps=6 format=3 uid="uid://d27w45nhdcqus"]
 
 [ext_resource type="Script" uid="uid://dm2frpliqrxoj" path="res://scripts/hud.gd" id="1_546lt"]
-[ext_resource type="PackedScene" uid="uid://bn2m6enepxd1g" path="res://ui/health_bar.tscn" id="1_rbyyf"]
-[ext_resource type="PackedScene" uid="uid://hnxglfkjgahd" path="res://ui/xp_bar.tscn" id="2_276te"]
+[ext_resource type="PackedScene" uid="uid://hnxglfkjgahd" path="res://ui/character_progress.tscn" id="2_276te"]
+[ext_resource type="Texture2D" uid="uid://bfcsuv0v3lupy" path="res://assets/Prinbles_Robin_UI/svg/Counter/Dummy.svg" id="3_7ihmi"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_276te"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1v5rv"]
+texture = ExtResource("3_7ihmi")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_q43x7"]
 font_size = 32
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
+shadow_size = 5
+shadow_color = Color(0, 0, 0, 0.588235)
 
 [node name="Hud" type="Control"]
 layout_mode = 3
@@ -18,29 +25,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_546lt")
 
-[node name="HealthBar" parent="." instance=ExtResource("1_rbyyf")]
+[node name="CharBar" parent="." instance=ExtResource("2_276te")]
 layout_mode = 0
-offset_left = 15.0
-offset_top = 15.0
-offset_right = 275.0
-offset_bottom = 42.0
 
-[node name="XpBar" parent="." instance=ExtResource("2_276te")]
-layout_mode = 0
-offset_left = 15.0
-offset_top = 45.0
-offset_right = 225.0
-offset_bottom = 72.0
-
-[node name="Timer" type="Label" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -41.0
-offset_top = 15.0
-offset_right = 41.0
-offset_bottom = 60.0
+offset_left = -55.0
+offset_top = 16.0
+offset_right = 55.0
+offset_bottom = 81.0
 grow_horizontal = 2
+scale = Vector2(0.8, 0.8)
+theme_override_styles/panel = SubResource("StyleBoxTexture_1v5rv")
+
+[node name="Timer" type="Label" parent="Panel"]
+layout_mode = 2
 text = "00:00"
-label_settings = SubResource("LabelSettings_276te")
+label_settings = SubResource("LabelSettings_q43x7")
+horizontal_alignment = 1

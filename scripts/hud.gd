@@ -1,7 +1,7 @@
 extends Control
 class_name HUD
 
-@onready var timer: Label = $Timer
+@onready var timer: Label = $Panel/Timer
 
 @onready var owner_level: Level = owner as Level
 

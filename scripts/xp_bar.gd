@@ -1,7 +1,8 @@
-extends ProgressBar
+extends Control
 class_name XPBar
 
 @onready var label: Label = $Panel/Label
+@onready var xp_progress_bar: ProgressBar = $XPProgressBar
 
 var player: PlayerCharacter
 var xp_track_component: XPTrackComponent
@@ -14,6 +15,6 @@ func _ready() -> void:
 	xp_track_component.player_got_xp.connect(_on_player_got_xp)
 
 func _on_player_got_xp(_player: PlayerCharacter):
-	max_value = xp_track_component.get_xp_required()
-	value = xp_track_component.current_xp
-	label.text = "Lv " + str(xp_track_component.level)
+	xp_progress_bar.max_value = xp_track_component.get_xp_required()
+	xp_progress_bar.value = xp_track_component.current_xp
+	label.text = "Level\n" + str(xp_track_component.level)

@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://hnxglfkjgahd"]
+
+[ext_resource type="Script" uid="uid://dq4ud1oxly32k" path="res://scripts/xp_bar.gd" id="1_5mak0"]
+[ext_resource type="Texture2D" uid="uid://brbv7k77dlwr3" path="res://assets/Prinbles_Robin_UI/svg/Level/Button/Dummy.svg" id="2_xmdh5"]
+[ext_resource type="Texture2D" uid="uid://ef6dqx1tl6ir" path="res://assets/Prinbles_Robin_UI/svg/Bar/Background.svg" id="3_a24k6"]
+[ext_resource type="Texture2D" uid="uid://g0v4ebr8lu2b" path="res://assets/Prinbles_Robin_UI/svg/Bar/Line.svg" id="4_42kbe"]
+[ext_resource type="PackedScene" uid="uid://bn2m6enepxd1g" path="res://ui/health_bar.tscn" id="5_fn30a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6lknp"]
+texture = ExtResource("2_xmdh5")
+texture_margin_left = 10.0
+texture_margin_top = 10.0
+texture_margin_right = 10.0
+texture_margin_bottom = 40.0
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 40.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_hky5g"]
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.588235)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ea85w"]
+texture = ExtResource("3_a24k6")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 28.0
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 14.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bp2tj"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+texture = ExtResource("4_42kbe")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+modulate_color = Color(0.388235, 0.313726, 0.905882, 1)
+
+[node name="CharacterProgress" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5mak0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 65.0
+offset_bottom = 65.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_6lknp")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -11.5
+offset_right = 21.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Level
+XX"
+label_settings = SubResource("LabelSettings_hky5g")
+horizontal_alignment = 1
+
+[node name="XPProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 60.0
+offset_right = 489.0
+offset_bottom = 108.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/background = SubResource("StyleBoxTexture_ea85w")
+theme_override_styles/fill = SubResource("StyleBoxTexture_bp2tj")
+value = 60.0
+show_percentage = false
+
+[node name="HealthBar" parent="." instance=ExtResource("5_fn30a")]
+layout_mode = 0
+offset_left = 89.0
+offset_top = 20.0
+offset_right = 489.0
+offset_bottom = 68.0

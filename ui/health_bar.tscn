@@ -1,42 +1,49 @@
-[gd_scene load_steps=6 format=3 uid="uid://bn2m6enepxd1g"]
+[gd_scene load_steps=8 format=3 uid="uid://bn2m6enepxd1g"]
 
+[ext_resource type="Texture2D" uid="uid://g0v4ebr8lu2b" path="res://assets/Prinbles_Robin_UI/svg/Bar/Line.svg" id="1_1w8tp"]
 [ext_resource type="Script" uid="uid://77o43ii1h416" path="res://scripts/health_bar.gd" id="1_rwxrv"]
+[ext_resource type="Texture2D" uid="uid://ef6dqx1tl6ir" path="res://assets/Prinbles_Robin_UI/svg/Bar/Background.svg" id="3_thfh1"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pv4sj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rbyyf"]
-bg_color = Color(0.785955, 0.159103, 0.0617506, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_eo044"]
+texture = ExtResource("1_1w8tp")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+modulate_color = Color(0.635294, 0.176471, 0.14902, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_276te"]
-bg_color = Color(0.114897, 0.114897, 0.114897, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-expand_margin_left = 1.0
-expand_margin_top = 1.0
-expand_margin_right = 1.0
-expand_margin_bottom = 1.0
-shadow_color = Color(0, 0, 0, 0.27451)
-shadow_offset = Vector2(0, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dtgp1"]
+texture = ExtResource("3_thfh1")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 28.0
+expand_margin_left = 10.0
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 14.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_546lt"]
-bg_color = Color(0.373144, 0.0834328, 0, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fbv3k"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+texture = ExtResource("1_1w8tp")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+modulate_color = Color(0.443137, 0.172549, 0.168627, 1)
 
 [node name="HealthBar" type="ProgressBar"]
 z_index = 1
-offset_right = 260.0
-offset_bottom = 27.0
+offset_right = 400.0
+offset_bottom = 48.0
+scale = Vector2(0.5, 0.5)
 theme_override_styles/background = SubResource("StyleBoxEmpty_pv4sj")
-theme_override_styles/fill = SubResource("StyleBoxFlat_rbyyf")
+theme_override_styles/fill = SubResource("StyleBoxTexture_eo044")
 value = 60.0
 show_percentage = false
 script = ExtResource("1_rwxrv")
@@ -49,8 +56,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_276te")
-theme_override_styles/fill = SubResource("StyleBoxFlat_546lt")
+theme_override_styles/background = SubResource("StyleBoxTexture_dtgp1")
+theme_override_styles/fill = SubResource("StyleBoxTexture_fbv3k")
 value = 80.0
 show_percentage = false
 
