@@ -4,9 +4,8 @@ class_name HealthComponent
 signal character_damage(amount: float)
 signal character_death(character: Node3D)
 
-@export var start_health: float = 100.0
-
-@onready var curr_health: float = start_health
+@export var max_health: float = 100.0
+@onready var curr_health: float = max_health
 
 func is_alive() -> bool:
 	return curr_health > 0.0
