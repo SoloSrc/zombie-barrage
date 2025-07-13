@@ -6,6 +6,8 @@ const SKELETON_MINION = preload("res://characters/skeleton_minion.tscn")
 @export var player: PlayerCharacter
 @export var regions: Array[NavigationRegion3D]
 
+@onready var level_owner: Level = owner as Level
+
 var region_rids: Array[RID]
 var last_region_idx: int
 
@@ -24,3 +26,4 @@ func _on_timeout() -> void:
 		origin = NavigationServer3D.region_get_random_point(region_rids[next_region_idx], 0, true)
 	node.transform.origin = origin
 	owner.add_child(node)
+	node.health_component.character_death.connect(level_owner.on_enemy_death)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhogcwjb42huh"]
+[gd_scene load_steps=13 format=3 uid="uid://bhogcwjb42huh"]
 
 [ext_resource type="Script" uid="uid://csfbk85cbxi34" path="res://scripts/level.gd" id="1_00mt7"]
 [ext_resource type="PackedScene" uid="uid://c85unba8rfv7y" path="res://characters/rogue.tscn" id="1_hh5l8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bc2e2f8l486wg" path="res://scripts/bird_view_camera.gd" id="3_b3inp"]
 [ext_resource type="Script" uid="uid://g7b52jabuisi" path="res://scripts/region_spawner.gd" id="4_kbugc"]
 [ext_resource type="PackedScene" uid="uid://d27w45nhdcqus" path="res://ui/hud.tscn" id="5_bcpxc"]
+[ext_resource type="PackedScene" uid="uid://bbx3be2bwtg7m" path="res://ui/game_over.tscn" id="7_kymjl"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_b3inp"]
 vertices = PackedVector3Array(-49.25, 0.5, -49.25, -49.25, 0.5, 49.25, 49.25, 0.5, 49.25, 49.25, 0.5, -49.25)
@@ -61,4 +62,12 @@ regions = [NodePath("../Map")]
 
 [node name="Hud" parent="." instance=ExtResource("5_bcpxc")]
 
+[node name="GameOver" parent="." instance=ExtResource("7_kymjl")]
+visible = false
+
+[node name="GameOverTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
 [connection signal="timeout" from="RegionSpawner" to="RegionSpawner" method="_on_timeout"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]
