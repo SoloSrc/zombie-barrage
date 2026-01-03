@@ -1,6 +1,6 @@
 Robin is a wooden game GUI asset
 By prinbles
-https://prinbles.itch.io/
+https://prinbles.itch.io/robin
 
 This asset can be used for personal purposes or commerce.
 You can use the asset in your commercial game, which can earning any income in any form. 

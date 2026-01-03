@@ -1,15 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbx3be2bwtg7m"]
+[gd_scene load_steps=14 format=3 uid="uid://bbx3be2bwtg7m"]
+
+[ext_resource type="Texture2D" uid="uid://7ib8trx7locn" path="res://assets/Interface.png" id="1_5eixk"]
+[ext_resource type="FontFile" uid="uid://d0mrh5qjg0jtg" path="res://assets/Metal_Mania/MetalMania-Regular.ttf" id="2_j1fe5"]
+[ext_resource type="FontFile" uid="uid://7cdf1hox5dsr" path="res://assets/Beth_Ellen/BethEllen-Regular.ttf" id="3_xjda6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u0541"]
 bg_color = Color(0.239216, 0.239216, 0.239216, 0.47451)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5eixk"]
+texture = ExtResource("1_5eixk")
+texture_margin_left = 32.0
+texture_margin_top = 32.0
+texture_margin_right = 32.0
+texture_margin_bottom = 32.0
+region_rect = Rect2(64, 0, 64, 64)
+
 [sub_resource type="LabelSettings" id="LabelSettings_u0541"]
-font_size = 50
-outline_size = 15
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 20
-shadow_color = Color(0, 0, 0, 0.45098)
-shadow_offset = Vector2(5, 5)
+font = ExtResource("2_j1fe5")
+font_size = 70
+font_color = Color(0.306923, 0.306923, 0.306923, 1)
+outline_size = 5
+outline_color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xjda6"]
+texture = ExtResource("1_5eixk")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+region_rect = Rect2(0, 0, 64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_akjlf"]
+font = ExtResource("3_xjda6")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_k8651"]
+font = ExtResource("3_xjda6")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_55k1u"]
+font = ExtResource("3_xjda6")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_tb368"]
+font = ExtResource("3_xjda6")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lgxpc"]
+font = ExtResource("3_xjda6")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rcx4q"]
+font = ExtResource("3_xjda6")
+font_color = Color(0, 0, 0, 1)
 
 [node name="GameOver" type="Control"]
 process_mode = 2
@@ -41,70 +84,83 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VSplitContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/CenterContainer"]
 layout_mode = 2
-text = "Game Over"
+theme_override_styles/panel = SubResource("StyleBoxTexture_5eixk")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer/CenterContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer"]
+layout_mode = 2
+text = "R I P"
 label_settings = SubResource("LabelSettings_u0541")
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VSplitContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer"]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer"]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_styles/panel = SubResource("StyleBoxTexture_xjda6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="Character" type="HSplitContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Character" type="HSplitContainer" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="CharLabel" type="Label" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Character"]
+[node name="CharLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Character"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Character"
+text = "Class"
+label_settings = SubResource("LabelSettings_akjlf")
 
-[node name="CharClass" type="Label" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Character"]
+[node name="CharClass" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Character"]
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Rogue"
+label_settings = SubResource("LabelSettings_k8651")
 
-[node name="Level" type="HSplitContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Level" type="HSplitContainer" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 100
 
-[node name="LvlLabel" type="Label" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Level"]
+[node name="LvlLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Level"]
 layout_mode = 2
 text = "Level"
+label_settings = SubResource("LabelSettings_55k1u")
 
-[node name="LvlNumber" type="Label" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Level"]
+[node name="LvlNumber" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Level"]
 layout_mode = 2
 text = "1"
+label_settings = SubResource("LabelSettings_tb368")
 horizontal_alignment = 2
 
-[node name="Time" type="HSplitContainer" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Time" type="HSplitContainer" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 100
 
-[node name="TimeLabel" type="Label" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Time"]
+[node name="TimeLabel" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Time"]
 layout_mode = 2
 text = "Time Survived"
+label_settings = SubResource("LabelSettings_lgxpc")
 
-[node name="TimeValue" type="Label" parent="MarginContainer/VSplitContainer/HBoxContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Time"]
+[node name="TimeValue" type="Label" parent="MarginContainer/CenterContainer/PanelContainer/VSplitContainer/CenterContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/Time"]
 layout_mode = 2
 text = "00:00"
+label_settings = SubResource("LabelSettings_rcx4q")
