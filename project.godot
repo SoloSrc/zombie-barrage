@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 players=""
 enemies=""
 xp_drops=""
+weapons="group of nodes on player weapons"
+levels="The group for level nodes"
 
 [input]
 

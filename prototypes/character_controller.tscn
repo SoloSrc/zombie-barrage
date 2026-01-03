@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhogcwjb42huh"]
+[gd_scene load_steps=14 format=3 uid="uid://bhogcwjb42huh"]
 
 [ext_resource type="Script" uid="uid://csfbk85cbxi34" path="res://scripts/level.gd" id="1_00mt7"]
 [ext_resource type="PackedScene" uid="uid://c85unba8rfv7y" path="res://characters/rogue.tscn" id="1_hh5l8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://g7b52jabuisi" path="res://scripts/region_spawner.gd" id="4_kbugc"]
 [ext_resource type="PackedScene" uid="uid://d27w45nhdcqus" path="res://ui/hud.tscn" id="5_bcpxc"]
 [ext_resource type="PackedScene" uid="uid://bbx3be2bwtg7m" path="res://ui/game_over.tscn" id="7_kymjl"]
+[ext_resource type="PackedScene" uid="uid://731hl8enlrvt" path="res://ui/mod_selection.tscn" id="8_fx1wb"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_b3inp"]
 vertices = PackedVector3Array(-49.25, 0.5, -49.25, -49.25, 0.5, 49.25, 49.25, 0.5, 49.25, 49.25, 0.5, -49.25)
@@ -27,12 +28,14 @@ size = Vector2(100, 100)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_hh5l8"]
 
-[node name="CharacterController" type="Node3D"]
+[node name="CharacterController" type="Node3D" groups=["levels"]]
 script = ExtResource("1_00mt7")
 
 [node name="Rogue" parent="." instance=ExtResource("1_hh5l8")]
 
 [node name="DaggerWeapon" parent="Rogue" instance=ExtResource("2_kbugc")]
+cooldown_in_secs = 2.0
+damage = 60.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 3.97772, 0)
@@ -65,9 +68,14 @@ regions = [NodePath("../Map")]
 [node name="GameOver" parent="." instance=ExtResource("7_kymjl")]
 visible = false
 
+[node name="ModSelection" parent="." instance=ExtResource("8_fx1wb")]
+process_mode = 2
+visible = false
+
 [node name="GameOverTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
 [connection signal="timeout" from="RegionSpawner" to="RegionSpawner" method="_on_timeout"]
+[connection signal="mod_selected" from="ModSelection" to="." method="_on_mod_selection_mod_selected"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_game_over_timer_timeout"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://sbfh1fdvxu6i"]
+
+[ext_resource type="Script" uid="uid://cbq02qonuuthh" path="res://scripts/mods/luck_mod.gd" id="1_drqes"]
+
+[node name="LuckPlayerMod" type="Node"]
+script = ExtResource("1_drqes")

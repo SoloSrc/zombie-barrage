@@ -1,9 +1,11 @@
-extends Node3D
+extends WeaponNode
 class_name DaggerWeapon
 
 const DAGGER_PROJECTILE = preload("res://weapons/dagger_projectile.tscn")
 
-@export var cooldown_in_secs: float = 2.0
+# Dagger unique attributes
+@export var hits: int = 1
+@export var num_projectiles: int = 1
 
 @onready var in_range: Dictionary[NodePath,SkeletonEnemy] = {}
 @onready var player_owner: PlayerCharacter = get_parent() as PlayerCharacter
@@ -23,11 +25,13 @@ func _process(delta: float) -> void:
 	var projectile: TargetedProjectile = DAGGER_PROJECTILE.instantiate()
 	projectile.character_owner = get_parent()
 	projectile.target = closest_enemy
+	projectile.damage = damage * player_owner.damage_modifier
+	projectile.hits = hits
 	projectile.transform.origin = global_position
 	projectile.transform.origin.y += 1.1 # add half the height of a character
 	projectile.velocity_normalized = (closest_enemy.global_position - global_position).normalized()
 	get_tree().root.add_child(projectile)
-	cooldown_countdown = cooldown_in_secs
+	cooldown_countdown = cooldown_in_secs * player_owner.cooldown_modifier
 
 func _find_closest_enemy_in_range() -> SkeletonEnemy:
 	var closest_enemy: SkeletonEnemy = null

@@ -1,0 +1,48 @@
+[gd_resource type="Resource" script_class="GameConfig" load_steps=4 format=3 uid="uid://db16xuiqsk326"]
+
+[ext_resource type="Script" uid="uid://bgp8vsrefhid7" path="res://scripts/drafts/mod_draft_config.gd" id="1_2yikq"]
+[ext_resource type="Script" uid="uid://betcoafm1g45l" path="res://scripts/config/game_config.gd" id="1_l8lsh"]
+
+[sub_resource type="Resource" id="Resource_hiou6"]
+script = ExtResource("1_2yikq")
+rarity_chances = Dictionary[int, float]({
+1: 0.01,
+2: 0.05,
+3: 0.14,
+4: 0.3,
+5: 0.5
+})
+cooldown_mod_percentages = Dictionary[int, float]({
+1: 0.3,
+2: 0.2,
+3: 0.15,
+4: 0.1,
+5: 0.05
+})
+damage_mod_percentages = Dictionary[int, float]({
+1: 0.3,
+2: 0.2,
+3: 0.15,
+4: 0.1,
+5: 0.05
+})
+speed_mod_percentages = Dictionary[int, float]({
+1: 0.3,
+2: 0.2,
+3: 0.15,
+4: 0.1,
+5: 0.05
+})
+luck_mod_percentages = Dictionary[int, float]({
+1: 0.05,
+2: 0.03,
+3: 0.02,
+4: 0.015,
+5: 0.01
+})
+metadata/_custom_type_script = "uid://bgp8vsrefhid7"
+
+[resource]
+script = ExtResource("1_l8lsh")
+mod_draft_config = SubResource("Resource_hiou6")
+metadata/_custom_type_script = "uid://betcoafm1g45l"

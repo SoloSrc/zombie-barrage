@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjsltw4qw5c6k"]
+
+[ext_resource type="Script" uid="uid://efijalmr3if5" path="res://scripts/mods/cooldown_mod.gd" id="1_52pl6"]
+
+[node name="CooldownPlayerMod" type="Node"]
+script = ExtResource("1_52pl6")

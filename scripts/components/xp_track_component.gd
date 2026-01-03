@@ -13,7 +13,7 @@ signal player_leveled_up(player: PlayerCharacter)
 func get_xp_required() -> float:
 	if level < 1:
 		return 0
-	return (2 ** (level - 1)) * 250
+	return (1.2 ** (level - 1)) * 150
 
 func take_xp(amount: float) -> void:
 	current_xp += amount * xp_modifier

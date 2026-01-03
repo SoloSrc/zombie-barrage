@@ -1,0 +1,70 @@
+[gd_scene load_steps=8 format=3 uid="uid://blu1ax3a4a764"]
+
+[ext_resource type="Texture2D" uid="uid://7ib8trx7locn" path="res://assets/Interface.png" id="1_t262c"]
+[ext_resource type="FontFile" uid="uid://7cdf1hox5dsr" path="res://assets/Beth_Ellen/BethEllen-Regular.ttf" id="2_6q888"]
+[ext_resource type="Script" uid="uid://brcgxsy25ytx6" path="res://scripts/mod_contract.gd" id="2_h0nj6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_plgxu"]
+texture = ExtResource("1_t262c")
+texture_margin_left = 20.0
+texture_margin_top = 20.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+region_rect = Rect2(0, 0, 64, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_1orfd"]
+font = ExtResource("2_6q888")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6f4j7"]
+font = ExtResource("2_6q888")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_2hgnn"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="ModContract" type="PanelContainer"]
+custom_minimum_size = Vector2(300, 0)
+theme_override_styles/panel = SubResource("StyleBoxTexture_plgxu")
+script = ExtResource("2_h0nj6")
+
+[node name="VSplitContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="WeaponUpgrade" type="Label" parent="VSplitContainer"]
+layout_mode = 2
+text = "Dagger Upgrade"
+label_settings = SubResource("LabelSettings_1orfd")
+horizontal_alignment = 1
+
+[node name="ModName" type="Label" parent="VSplitContainer"]
+layout_mode = 2
+text = "Mod Name"
+label_settings = SubResource("LabelSettings_6f4j7")
+horizontal_alignment = 1
+
+[node name="Icon" type="TextureRect" parent="VSplitContainer"]
+layout_mode = 2
+
+[node name="HumanDescription" type="Label" parent="VSplitContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+text = "30% less cool down"
+label_settings = SubResource("LabelSettings_2hgnn")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Button" type="Button" parent="VSplitContainer/MarginContainer"]
+layout_mode = 2
+text = "Accept"
+
+[connection signal="pressed" from="VSplitContainer/MarginContainer/Button" to="." method="_on_button_pressed"]

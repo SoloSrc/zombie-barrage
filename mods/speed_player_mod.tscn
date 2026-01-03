@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://6fyj2ah2jtoy"]
+
+[ext_resource type="Script" uid="uid://balnhu5g30ehq" path="res://scripts/mods/speed_mod.gd" id="1_1vcd8"]
+
+[node name="SpeedPlayerMod" type="Node"]
+script = ExtResource("1_1vcd8")

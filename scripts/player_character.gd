@@ -9,9 +9,17 @@ const PISTOL_RUN_STATE = "pistol_run"
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
+@export var damage_modifier: float = 1.0
+@export var speed_modifier: float = 1.0
+@export var cooldown_modifier: float = 1.0
+@export var luck_modifier: float = 0.0
+
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var xp_track_component: XPTrackComponent = $XPTrackComponent
+
+func speed() -> float:
+	return SPEED * speed_modifier
 
 func _physics_process(delta: float) -> void:
 	if health_component.is_alive():
@@ -41,11 +49,11 @@ func calc_movement() -> void:
 	if direction != Vector3.ZERO:
 		set_mov_blend_amount(1.0)
 		look_at(global_position + direction)
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * speed()
+		velocity.z = direction.z * speed()
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed())
+		velocity.z = move_toward(velocity.z, 0, speed())
 		set_mov_blend_amount(0)
 
 func set_mov_blend_amount(amt: float) -> void:
@@ -53,3 +61,11 @@ func set_mov_blend_amount(amt: float) -> void:
 
 func get_anim_state() -> String:
 	return animation_tree.get("parameters/state/current_state")
+
+func get_weapons() -> Array[WeaponNode]:
+	var weapons: Array[WeaponNode] = []
+	for child in get_children():
+		if not child.is_in_group("weapons"):
+			continue
+		weapons.append(child)
+	return weapons

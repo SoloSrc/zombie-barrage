@@ -3,8 +3,8 @@ class_name TargetedProjectile
 
 @export var speed: float = 15.0
 @export var target: Node3D
-@export var hits: int = 1
-@export var damage: float = 60.0
+@export var hits: int
+@export var damage: float
 @export var character_owner: Node
 @export var velocity_normalized: Vector3
 
