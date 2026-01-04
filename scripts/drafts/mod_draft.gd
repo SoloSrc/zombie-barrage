@@ -7,6 +7,8 @@ const DAMAGE_PLAYER_MOD = preload("res://mods/damage_player_mod.tscn")
 const LUCK_PLAYER_MOD = preload("res://mods/luck_player_mod.tscn")
 const SPEED_PLAYER_MOD = preload("res://mods/speed_player_mod.tscn")
 const VITALITY_PLAYER_MOD = preload("res://mods/vitality_player_mod.tscn")
+const MAGNET_PLAYER_MOD = preload("res://mods/magnet_player_mod.tscn")
+
 
 enum ModType {
 	UNKNOWN = 0,
@@ -16,6 +18,7 @@ enum ModType {
 	LUCK = 4,
 	WEAPON_MOD = 5,
 	VITALITY = 6,
+	MAGNET = 7,
 }
 
 # Rarity defines the quality of upgrades and gear. The order of the enum values
@@ -108,6 +111,11 @@ func _build_player_mod_data(mod_type: ModType, rarity: Rarity) -> ModData:
 			scene = VITALITY_PLAYER_MOD
 			mod_name = "Vitality"
 			description = "Increases the character's maximum health by %.0f points" % effect
+		ModType.MAGNET:
+			effect = _config.mod_draft_config.magnet_mod_percentages[rarity]
+			scene = MAGNET_PLAYER_MOD
+			mod_name = "Maget"
+			description = "Increases the area where the character attracts XP by %1.1f%%" % (effect * 100)
 		_:
 			effect = 0.0
 			scene = null

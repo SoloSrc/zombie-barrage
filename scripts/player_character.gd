@@ -17,6 +17,8 @@ const JUMP_VELOCITY = 4.5
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var xp_track_component: XPTrackComponent = $XPTrackComponent
+@onready var magnet: Magnet = $Magnet
+
 
 func speed() -> float:
 	return SPEED * speed_modifier

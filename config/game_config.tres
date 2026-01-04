@@ -47,6 +47,13 @@ vitality_mod_values = Dictionary[int, float]({
 4: 50.0,
 5: 25.0
 })
+magnet_mod_percentages = Dictionary[int, float]({
+1: 0.35,
+2: 0.3,
+3: 0.25,
+4: 0.2,
+5: 0.15
+})
 metadata/_custom_type_script = "uid://bgp8vsrefhid7"
 
 [resource]

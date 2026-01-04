@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://qhmlrxrmor4l"]
+
+[ext_resource type="Script" uid="uid://cqtne5tjkkhxh" path="res://scripts/mods/magnet_mod.gd" id="1_t4fj0"]
+
+[node name="MagnetPlayerMod" type="Node"]
+script = ExtResource("1_t4fj0")
