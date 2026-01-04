@@ -40,6 +40,13 @@ luck_mod_percentages = Dictionary[int, float]({
 4: 0.015,
 5: 0.01
 })
+vitality_mod_values = Dictionary[int, float]({
+1: 200.0,
+2: 150.0,
+3: 100.0,
+4: 50.0,
+5: 25.0
+})
 metadata/_custom_type_script = "uid://bgp8vsrefhid7"
 
 [resource]

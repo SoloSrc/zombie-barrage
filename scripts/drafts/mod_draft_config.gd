@@ -7,3 +7,4 @@ class_name ModDraftConfig
 @export var damage_mod_percentages: Dictionary[ModDraft.Rarity, float]
 @export var speed_mod_percentages: Dictionary[ModDraft.Rarity, float]
 @export var luck_mod_percentages: Dictionary[ModDraft.Rarity, float]
+@export var vitality_mod_values: Dictionary[ModDraft.Rarity, float]

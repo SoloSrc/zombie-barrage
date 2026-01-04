@@ -6,7 +6,7 @@ const COOLDOWN_PLAYER_MOD = preload("res://mods/cooldown_player_mod.tscn")
 const DAMAGE_PLAYER_MOD = preload("res://mods/damage_player_mod.tscn")
 const LUCK_PLAYER_MOD = preload("res://mods/luck_player_mod.tscn")
 const SPEED_PLAYER_MOD = preload("res://mods/speed_player_mod.tscn")
-
+const VITALITY_PLAYER_MOD = preload("res://mods/vitality_player_mod.tscn")
 
 enum ModType {
 	UNKNOWN = 0,
@@ -15,6 +15,7 @@ enum ModType {
 	SPEED = 3,
 	LUCK = 4,
 	WEAPON_MOD = 5,
+	VITALITY = 6,
 }
 
 # Rarity defines the quality of upgrades and gear. The order of the enum values
@@ -102,6 +103,11 @@ func _build_player_mod_data(mod_type: ModType, rarity: Rarity) -> ModData:
 			scene = LUCK_PLAYER_MOD
 			mod_name = "Luck"
 			description = "Increases chance of finding higher quality mods and gear"
+		ModType.VITALITY:
+			effect = _config.mod_draft_config.vitality_mod_values[rarity]
+			scene = VITALITY_PLAYER_MOD
+			mod_name = "Vitality"
+			description = "Increases the character's maximum health by %.0f points" % effect
 		_:
 			effect = 0.0
 			scene = null

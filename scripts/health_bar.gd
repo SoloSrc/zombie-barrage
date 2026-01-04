@@ -16,6 +16,7 @@ func _ready() -> void:
 	damage_bar.max_value = health_component.max_health
 	damage_bar.value = health_component.max_health
 	health_component.character_damage.connect(_on_player_took_damage)
+	health_component.character_max_health_changed.connect(_on_player_changed_max_health)
 
 func _on_player_took_damage(amount: float):
 	timer.start()
@@ -23,3 +24,7 @@ func _on_player_took_damage(amount: float):
 
 func _on_timer_timeout() -> void:
 	damage_bar.value = value
+
+func _on_player_changed_max_health(new_max: float, _offset: float):
+	max_value = new_max
+	damage_bar.max_value = new_max

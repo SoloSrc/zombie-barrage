@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dy4sriy6y8ylq"]
+
+[ext_resource type="Script" uid="uid://dnjb85fkfeb2j" path="res://scripts/mods/vitality_mod.gd" id="1_41rb8"]
+
+[node name="VitalityPlayerMod" type="Node"]
+script = ExtResource("1_41rb8")
+metadata/_custom_type_script = "uid://djgrcm4k4x6ly"

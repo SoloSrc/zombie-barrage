@@ -6,12 +6,13 @@ class_name Magnet
 
 @export var magnet_radius: float :
 	set(value):
-		var sphere: SphereShape3D = collision_shape_3d.shape as SphereShape3D
-		sphere.radius = value
 		magnet_radius = value
+		if collision_shape_3d != null:
+			_set_sphere_radius()
 
 func _ready() -> void:
 	assert(player_owner != null)
+	_set_sphere_radius()
 	area_entered.connect(_on_area_entered)
 
 func _on_area_entered(area: Area3D):
@@ -23,3 +24,8 @@ func _on_area_entered(area: Area3D):
 	if collectable.was_collected:
 		return
 	collectable.attract_component.go_to(player_owner)
+
+
+func _set_sphere_radius():
+	var sphere: SphereShape3D = collision_shape_3d.shape as SphereShape3D
+	sphere.radius = magnet_radius

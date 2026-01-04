@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://caly2knkj71li"]
+
+[ext_resource type="Script" uid="uid://b8mo6h5r5lhbo" path="res://scripts/magnet.gd" id="1_havbi"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_n8ksq"]
+radius = 3.0
+
+[node name="Magnet" type="Area3D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_havbi")
+magnet_radius = 3.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_n8ksq")
