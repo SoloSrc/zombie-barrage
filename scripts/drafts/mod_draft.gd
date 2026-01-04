@@ -10,6 +10,10 @@ const VITALITY_PLAYER_MOD = preload("res://mods/vitality_player_mod.tscn")
 const MAGNET_PLAYER_MOD = preload("res://mods/magnet_player_mod.tscn")
 
 
+# Dagger Mods
+const HITS_DAGGER_MOD = preload("res://mods/dagger/hits_dagger_mod.tscn")
+
+
 enum ModType {
 	UNKNOWN = 0,
 	COOLDOWN = 1,
@@ -30,6 +34,18 @@ enum Rarity {
 	RARE = 3,
 	UNCOMMON = 4,
 	COMMON = 5,
+}
+
+# When creating a new weapon, you must include it here in order to get the draft
+# working for it.
+enum Weapon {
+	UNKNOWN = 0,
+	DAGGER = 1,
+}
+
+enum DaggerMods {
+	UNKNOWN = 0,
+	HITS = 1,
 }
 
 var _player: PlayerCharacter
@@ -62,9 +78,7 @@ func roll() -> Array[ModData]:
 func _roll_mod() -> ModData:
 	var mod_type: ModType = _roll_mod_type()
 	if mod_type == ModType.WEAPON_MOD:
-		# fix this or weapon mods won't work
-		print("WEAPON MOD ROLLED")
-		return _build_player_mod_data(mod_type, Rarity.UNKNOWN)
+		return _build_weapon_mod_data()
 	var rarity: Rarity = _roll_rarity()
 	return _build_player_mod_data(mod_type, rarity)
 
@@ -78,6 +92,52 @@ func _roll_rarity() -> Rarity:
 			return i
 	print("UNKNOWN RARITY ROLLED")
 	return Rarity.UNKNOWN
+
+
+func _build_weapon_mod_data() -> ModData:
+	var weapon: Weapon = _roll_weapon()
+	match weapon:
+		Weapon.DAGGER:
+			return _build_dagger_mod_data()
+		_:
+			var mod_data: ModData = ModData.new()
+			return mod_data
+
+
+func _roll_weapon() -> Weapon:
+	var player_weapons: Array[WeaponNode] = []
+	for child in _player.get_children():
+		if child.is_in_group("weapons"):
+			player_weapons.append(child)
+	var chosen_weapon: WeaponNode = player_weapons.pick_random()
+	return _to_draft_weapon(chosen_weapon)
+
+
+func _to_draft_weapon(weapon_node: WeaponNode) -> Weapon:
+	if weapon_node is DaggerWeapon:
+		return Weapon.DAGGER
+	return Weapon.UNKNOWN
+
+
+func _build_dagger_mod_data() -> ModData:
+	var candidates: Array[DaggerMods] = []
+	for dagger_mod in DaggerMods.values():
+		if dagger_mod != DaggerMods.UNKNOWN:
+			candidates.append(dagger_mod)
+	var dagger_mod: DaggerMods = candidates.pick_random()
+	match dagger_mod:
+		DaggerMods.HITS:
+			var mod_data: ModData = ModData.new()
+			mod_data.effect = 1.0
+			mod_data.mod_scene = HITS_DAGGER_MOD
+			mod_data.weapon_name = "Dagger"
+			mod_data.mod_name = "Hits"
+			mod_data.description = "Dagger hits +1 enemy in its path"
+			mod_data.rarity = Rarity.UNKNOWN
+			mod_data.mod_type = ModType.WEAPON_MOD
+			return mod_data
+		_:
+			return ModData.new()
 
 
 func _build_player_mod_data(mod_type: ModType, rarity: Rarity) -> ModData:

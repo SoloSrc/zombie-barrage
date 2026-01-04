@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgfh4efnyv5x0"]
+
+[ext_resource type="Script" uid="uid://cvx5a0v6ni8e8" path="res://scripts/mods/dagger/dagger_hit_mod.gd" id="1_jk601"]
+
+[node name="HitsDaggerMod" type="Node"]
+script = ExtResource("1_jk601")

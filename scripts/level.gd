@@ -49,6 +49,12 @@ func _on_player_leveled_up(_player: PlayerCharacter) -> void:
 
 
 func _on_mod_selection_mod_selected(mod: ModNode) -> void:
-	player.add_child(mod)
+	if not mod is WeaponModNode:
+		player.add_child(mod)
+	else:
+		var weapon_mod: WeaponModNode = mod as WeaponModNode
+		for weapon in player.get_weapons():
+			if weapon_mod.can_attach(weapon):
+				weapon.add_child(mod)
 	mod_selection.hide()
 	get_tree().paused = false
