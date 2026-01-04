@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://di0icfprumtyr"]
+
+[ext_resource type="Script" uid="uid://b0f65ku5biqb7" path="res://scripts/pause_screen.gd" id="1_by0rh"]
+[ext_resource type="FontFile" uid="uid://d0mrh5qjg0jtg" path="res://assets/Metal_Mania/MetalMania-Regular.ttf" id="1_qfm4t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_by0rh"]
+bg_color = Color(0.239216, 0.239216, 0.239216, 0.47451)
+
+[sub_resource type="LabelSettings" id="LabelSettings_717gb"]
+font = ExtResource("1_qfm4t")
+font_size = 50
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="PauseScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_by0rh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_by0rh")
+
+[node name="PausedText" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -133.0
+offset_right = -9.0
+offset_bottom = 63.0
+grow_horizontal = 0
+text = "Paused"
+label_settings = SubResource("LabelSettings_717gb")

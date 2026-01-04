@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhogcwjb42huh"]
+[gd_scene load_steps=15 format=3 uid="uid://bhogcwjb42huh"]
 
 [ext_resource type="Script" uid="uid://csfbk85cbxi34" path="res://scripts/level.gd" id="1_00mt7"]
 [ext_resource type="PackedScene" uid="uid://c85unba8rfv7y" path="res://characters/rogue.tscn" id="1_hh5l8"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d27w45nhdcqus" path="res://ui/hud.tscn" id="5_bcpxc"]
 [ext_resource type="PackedScene" uid="uid://bbx3be2bwtg7m" path="res://ui/game_over.tscn" id="7_kymjl"]
 [ext_resource type="PackedScene" uid="uid://731hl8enlrvt" path="res://ui/mod_selection.tscn" id="8_fx1wb"]
+[ext_resource type="PackedScene" uid="uid://di0icfprumtyr" path="res://ui/pause_screen.tscn" id="9_f28pg"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_b3inp"]
 vertices = PackedVector3Array(-49.25, 0.5, -49.25, -49.25, 0.5, 49.25, 49.25, 0.5, 49.25, 49.25, 0.5, -49.25)
@@ -69,6 +70,10 @@ regions = [NodePath("../Map")]
 visible = false
 
 [node name="ModSelection" parent="." instance=ExtResource("8_fx1wb")]
+process_mode = 2
+visible = false
+
+[node name="PauseScreen" parent="." instance=ExtResource("9_f28pg")]
 process_mode = 2
 visible = false
 

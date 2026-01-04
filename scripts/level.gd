@@ -7,6 +7,7 @@ const GAME_CONFIG = preload("res://config/game_config.tres")
 @onready var game_over_screen: Control = $GameOver
 @onready var game_over_timer: Timer = $GameOverTimer
 @onready var mod_selection: ModSelection = $ModSelection
+@onready var pause_screen: PauseScreen = $PauseScreen
 
 
 # level statistics
@@ -14,6 +15,7 @@ const GAME_CONFIG = preload("res://config/game_config.tres")
 @export var duration_in_secs: float = 0.0
 @export var kills: int = 0
 @export var config: GameConfig = GAME_CONFIG
+
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("players")
@@ -24,6 +26,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if player.health_component.is_alive():
 		duration_in_secs += delta
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = true
+		pause_screen.show()
+
 
 func on_enemy_death(_character: Node3D):
 	kills += 1
